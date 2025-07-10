@@ -1,34 +1,56 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Sparkles } from "lucide-react";
+import {Input} from "@/components/ui/input";
+import {Book} from "lucide-react";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-black flex flex-col items-center justify-between py-12">
+      {/* Header */}
+      <header className="w-full max-w-6xl flex items-center justify-between px-6 py-4 mb-8">
+        <div className="flex items-center gap-2">
+          <Book className="w-6 h-6 text-black" />
+          <span className="text-xl font-bold tracking-tight">Open AI University</span>
+        </div>
+        <nav className="flex items-center gap-4">
+          <a href="#" className="text-gray-700 hover:text-black transition">About</a>
+          <a href="#" className="text-gray-700 hover:text-black transition">Contact</a>
+          <Button className="ml-2 border border-gray-300 bg-white text-black font-semibold px-4 py-2 rounded hover:bg-gray-100 transition">+ Submit</Button>
+        </nav>
+      </header>
       {/* Hero Section */}
-      <section className="relative w-full max-w-2xl flex flex-col items-center text-center gap-6 mb-20 pt-8 pb-16 overflow-hidden">
+      <section className="relative w-full max-w-6xl flex flex-col items-start text-left gap-6 mb-20 pt-8 pb-16 overflow-hidden px-6">
         {/* Gradient background shape */}
         <div className="absolute inset-0 -z-10 flex justify-center items-center">
           <div className="w-[600px] h-[300px] bg-gradient-to-tr from-indigo-100 via-purple-100 to-pink-100 rounded-full blur-2xl opacity-80"></div>
         </div>
-        <Badge className="bg-black text-white font-semibold px-3 py-1 rounded-full mb-2 shadow-lg">The Product Hunt for AI Education</Badge>
-        <div className="flex flex-col items-center gap-2">
-          <span className="inline-flex items-center justify-center bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 rounded-full p-3 mb-2 shadow-md">
-            <Sparkles className="text-white w-8 h-8" />
-          </span>
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-tight mb-2">
-            <span className="bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Open AI University</span> Directory
-          </h1>
+        {/* Badge for tools added */}
+        <div className="flex items-center gap-2 mb-2">
+          <span className="inline-block w-3 h-3 bg-green-400 rounded-full"></span>
+          <span className="bg-gray-100 text-gray-800 text-sm font-medium px-3 py-1 rounded shadow">2 courses added this week</span>
         </div>
-        <p className="text-xl md:text-2xl text-gray-700 font-medium max-w-2xl mx-auto mb-2">
-          Discover, learn, and stay ahead with the best AI education resources, courses, trending GitHub repos, events, and tools.
+        <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-tight mb-2">
+          The Product Hunt for<br />AI Education
+        </h1>
+        <p className="text-xl md:text-2xl text-gray-700 font-medium max-w-2xl mb-2">
+          A curated directory to discover top AI courses, trending GitHub repositories, upcoming events, and practical AI tools.
         </p>
-        <p className="text-base text-gray-500 mb-6">Your curated gateway to the future of AI learning.</p>
-        <Button className="bg-black text-white font-semibold px-8 py-4 rounded-lg text-lg shadow-lg hover:bg-gray-900 transition flex items-center gap-2">
-          <Sparkles className="w-5 h-5" />
-          Explore Directory
-        </Button>
+        {/* Newsletter subscribe input */}
+        <form className="flex w-full max-w-md mt-4 gap-4">
+          <Input
+            type="email"
+            placeholder="Subscribe to our newsletter"
+            className="flex-[2] text-base bg-white"
+            style={{minHeight: '48px'}}
+          />
+          <Button
+            type="button"
+            className="flex-1 bg-black text-white font-semibold px-6 py-3 rounded hover:bg-gray-900 transition"
+            style={{height: '48px'}}
+          >
+            Subscribe
+          </Button>
+        </form>
       </section>
 
       {/* Features Section */}
