@@ -1,9 +1,11 @@
+import React from "react";
 import {Button} from "@/components/ui/button";
 import {Book} from "lucide-react";
 import {CourseCard} from "@/components/ui/course-card";
 import {dummyCourses} from "@/types/course";
 
 export default function HomePage() {
+
   return (
     <main className="min-h-screen bg-white text-black flex flex-col items-center justify-between py-12">
       {/* Header */}
