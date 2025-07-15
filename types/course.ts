@@ -17,7 +17,7 @@ export interface Course {
   /** Short summary */
   description: string;
   /** Resource type */
-  type: "course" | "repository" | "event" | "tool";
+  type: CourseType;
   /** e.g., 'Coursera', 'GitHub', 'YouTube' */
   source_platform: string;
   /** Link to the original resource */
@@ -35,9 +35,22 @@ export interface Course {
   /** Estimated time to complete (e.g., "8 hours") */
   duration: string;
   /** Difficulty level */
-  difficulty: "Beginner" | "Intermediate" | "Advanced";
+  difficulty: Difficulty;
   /** List of main topics covered */
   topics: string[];
+}
+
+export enum CourseType {
+  Course = "course",
+  Repository = "repository",
+  Event = "event",
+  Tool = "tool",
+}
+
+export enum Difficulty {
+  Beginner = "Beginner",
+  Intermediate = "Intermediate",
+  Advanced = "Advanced",
 }
 
 // Dummy data for courses
@@ -50,7 +63,7 @@ export const dummyCourses: Course[] = [
     title: "Introduction to AI",
     subtitle: "Learn the basics of Artificial Intelligence",
     description: "A beginner-friendly course covering the fundamentals of AI, including history, applications, and basic algorithms.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Coursera",
     source_url: "https://coursera.org/ai-intro",
     author: "Andrew Ng",
@@ -59,7 +72,7 @@ export const dummyCourses: Course[] = [
     featured: true,
     audience: ["Students", "Professionals"],
     duration: "8 hours",
-    difficulty: "Beginner",
+    difficulty: Difficulty.Beginner,
     topics: ["AI Basics", "History", "Applications"],
   },
   {
@@ -70,7 +83,7 @@ export const dummyCourses: Course[] = [
     title: "Deep Learning Specialization",
     subtitle: "Master deep learning, and break into AI",
     description: "A comprehensive specialization that helps you understand deep learning, neural networks, and how to build AI systems.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Coursera",
     source_url: "https://coursera.org/deep-learning",
     author: "Andrew Ng",
@@ -79,7 +92,7 @@ export const dummyCourses: Course[] = [
     featured: true,
     audience: ["Intermediate Learners"],
     duration: "40 hours",
-    difficulty: "Intermediate",
+    difficulty: Difficulty.Intermediate,
     topics: ["Neural Networks", "Backpropagation", "CNNs", "RNNs"],
   },
   {
@@ -90,7 +103,7 @@ export const dummyCourses: Course[] = [
     title: "Advanced Machine Learning",
     subtitle: "Push your ML skills to the next level",
     description: "An advanced course for those who want to dive deeper into machine learning algorithms and real-world applications.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "edX",
     source_url: "https://edx.org/advanced-ml",
     author: "Jane Doe",
@@ -99,7 +112,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Advanced Learners", "Researchers"],
     duration: "60 hours",
-    difficulty: "Advanced",
+    difficulty: Difficulty.Advanced,
     topics: ["Ensemble Methods", "Reinforcement Learning", "NLP"],
   },
   {
@@ -110,7 +123,7 @@ export const dummyCourses: Course[] = [
     title: "Python for Everybody",
     subtitle: "Programming basics with Python",
     description: "A hands-on course for beginners to learn Python programming and problem-solving skills.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Coursera",
     source_url: "https://coursera.org/python-everybody",
     author: "Charles Severance",
@@ -119,7 +132,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Students", "Beginners"],
     duration: "12 hours",
-    difficulty: "Beginner",
+    difficulty: Difficulty.Beginner,
     topics: ["Python Basics", "Data Structures", "Functions"],
   },
   {
@@ -130,7 +143,7 @@ export const dummyCourses: Course[] = [
     title: "Full Stack Web Development",
     subtitle: "Build modern web applications",
     description: "Learn to build and deploy full stack web applications using JavaScript, React, and Node.js.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Udemy",
     source_url: "https://udemy.com/full-stack-web-dev",
     author: "Angela Yu",
@@ -139,7 +152,7 @@ export const dummyCourses: Course[] = [
     featured: true,
     audience: ["Developers", "Students"],
     duration: "50 hours",
-    difficulty: "Intermediate",
+    difficulty: Difficulty.Intermediate,
     topics: ["React", "Node.js", "APIs", "MongoDB"],
   },
   {
@@ -150,7 +163,7 @@ export const dummyCourses: Course[] = [
     title: "Data Science Bootcamp",
     subtitle: "Become a data scientist",
     description: "A comprehensive bootcamp covering data analysis, visualization, and machine learning.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "DataCamp",
     source_url: "https://datacamp.com/data-science-bootcamp",
     author: "Emily Chen",
@@ -159,7 +172,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Professionals", "Students"],
     duration: "80 hours",
-    difficulty: "Intermediate",
+    difficulty: Difficulty.Intermediate,
     topics: ["Pandas", "NumPy", "Scikit-learn", "Visualization"],
   },
   {
@@ -170,7 +183,7 @@ export const dummyCourses: Course[] = [
     title: "JavaScript: The Advanced Concepts",
     subtitle: "Deep dive into JavaScript",
     description: "Master advanced JavaScript concepts and patterns for professional development.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Udemy",
     source_url: "https://udemy.com/advanced-javascript",
     author: "Andrei Neagoie",
@@ -179,7 +192,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Developers", "Advanced Learners"],
     duration: "20 hours",
-    difficulty: "Advanced",
+    difficulty: Difficulty.Advanced,
     topics: ["Closures", "Async/Await", "Design Patterns"],
   },
   {
@@ -190,7 +203,7 @@ export const dummyCourses: Course[] = [
     title: "Introduction to Databases",
     subtitle: "Learn SQL and database design",
     description: "A beginner's guide to relational databases, SQL queries, and normalization.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "edX",
     source_url: "https://edx.org/intro-databases",
     author: "John Smith",
@@ -199,7 +212,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Students", "Professionals"],
     duration: "10 hours",
-    difficulty: "Beginner",
+    difficulty: Difficulty.Beginner,
     topics: ["SQL", "ER Diagrams", "Normalization"],
   },
   {
@@ -210,7 +223,7 @@ export const dummyCourses: Course[] = [
     title: "React - The Complete Guide",
     subtitle: "Build scalable React apps",
     description: "A complete course on React, including hooks, context, and advanced patterns.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Udemy",
     source_url: "https://udemy.com/react-complete-guide",
     author: "Maximilian Schwarzmüller",
@@ -219,7 +232,7 @@ export const dummyCourses: Course[] = [
     featured: true,
     audience: ["Developers", "Students"],
     duration: "40 hours",
-    difficulty: "Intermediate",
+    difficulty: Difficulty.Intermediate,
     topics: ["React", "Hooks", "Context API", "Redux"],
   },
   {
@@ -230,7 +243,7 @@ export const dummyCourses: Course[] = [
     title: "Natural Language Processing with Python",
     subtitle: "NLP fundamentals and applications",
     description: "Learn the basics of NLP, text processing, and building language models with Python.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Coursera",
     source_url: "https://coursera.org/nlp-python",
     author: "Susan Li",
@@ -239,7 +252,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Students", "Researchers"],
     duration: "18 hours",
-    difficulty: "Intermediate",
+    difficulty: Difficulty.Intermediate,
     topics: ["Text Processing", "Language Models", "NLTK"],
   },
   {
@@ -250,7 +263,7 @@ export const dummyCourses: Course[] = [
     title: "Introduction to Cloud Computing",
     subtitle: "Cloud fundamentals for everyone",
     description: "Understand the basics of cloud computing, deployment models, and cloud services.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "edX",
     source_url: "https://edx.org/cloud-computing",
     author: "Michael Brown",
@@ -259,7 +272,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Students", "Professionals"],
     duration: "15 hours",
-    difficulty: "Beginner",
+    difficulty: Difficulty.Beginner,
     topics: ["Cloud Models", "IaaS", "PaaS", "SaaS"],
   },
   {
@@ -270,7 +283,7 @@ export const dummyCourses: Course[] = [
     title: "Kubernetes for Developers",
     subtitle: "Container orchestration made easy",
     description: "Learn how to deploy, manage, and scale containerized applications using Kubernetes.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Pluralsight",
     source_url: "https://pluralsight.com/kubernetes-for-developers",
     author: "Alex Johnson",
@@ -279,7 +292,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Developers", "DevOps Engineers"],
     duration: "25 hours",
-    difficulty: "Intermediate",
+    difficulty: Difficulty.Intermediate,
     topics: ["Kubernetes", "Containers", "Deployment", "Scaling"],
   },
   {
@@ -290,7 +303,7 @@ export const dummyCourses: Course[] = [
     title: "Algorithms and Data Structures",
     subtitle: "Essential CS concepts",
     description: "A foundational course on algorithms, data structures, and problem-solving techniques.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Coursera",
     source_url: "https://coursera.org/algorithms-data-structures",
     author: "Robert Sedgewick",
@@ -299,7 +312,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Students", "Developers"],
     duration: "30 hours",
-    difficulty: "Intermediate",
+    difficulty: Difficulty.Intermediate,
     topics: ["Sorting", "Searching", "Graphs", "Trees"],
   },
   {
@@ -310,7 +323,7 @@ export const dummyCourses: Course[] = [
     title: "iOS App Development with Swift",
     subtitle: "Build iOS apps from scratch",
     description: "Learn to design and develop iOS applications using Swift and Xcode.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Udemy",
     source_url: "https://udemy.com/ios-app-development-swift",
     author: "Angela Yu",
@@ -319,7 +332,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Students", "Developers"],
     duration: "35 hours",
-    difficulty: "Intermediate",
+    difficulty: Difficulty.Intermediate,
     topics: ["Swift", "UIKit", "Xcode", "App Design"],
   },
   {
@@ -330,7 +343,7 @@ export const dummyCourses: Course[] = [
     title: "Cybersecurity Fundamentals",
     subtitle: "Protect systems and data",
     description: "An introduction to cybersecurity principles, threats, and defense mechanisms.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "edX",
     source_url: "https://edx.org/cybersecurity-fundamentals",
     author: "Lisa White",
@@ -339,7 +352,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Students", "IT Professionals"],
     duration: "20 hours",
-    difficulty: "Beginner",
+    difficulty: Difficulty.Beginner,
     topics: ["Threats", "Encryption", "Network Security"],
   },
   {
@@ -350,7 +363,7 @@ export const dummyCourses: Course[] = [
     title: "Blockchain Basics",
     subtitle: "Understand blockchain technology",
     description: "A beginner's guide to blockchain, cryptocurrencies, and decentralized applications.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Coursera",
     source_url: "https://coursera.org/blockchain-basics",
     author: "Satoshi Nakamoto",
@@ -359,7 +372,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Students", "Professionals"],
     duration: "10 hours",
-    difficulty: "Beginner",
+    difficulty: Difficulty.Beginner,
     topics: ["Blockchain", "Bitcoin", "Smart Contracts"],
   },
   {
@@ -370,7 +383,7 @@ export const dummyCourses: Course[] = [
     title: "Frontend Masters: CSS Grid & Flexbox",
     subtitle: "Modern CSS layout techniques",
     description: "Master CSS Grid and Flexbox to create responsive, modern web layouts.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Frontend Masters",
     source_url: "https://frontendmasters.com/css-grid-flexbox",
     author: "Rachel Andrew",
@@ -379,7 +392,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Designers", "Developers"],
     duration: "8 hours",
-    difficulty: "Intermediate",
+    difficulty: Difficulty.Intermediate,
     topics: ["CSS Grid", "Flexbox", "Responsive Design"],
   },
   {
@@ -390,7 +403,7 @@ export const dummyCourses: Course[] = [
     title: "Google Cloud Platform Essentials",
     subtitle: "Get started with GCP",
     description: "A practical introduction to Google Cloud Platform services and tools.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Coursera",
     source_url: "https://coursera.org/gcp-essentials",
     author: "Priya Patel",
@@ -399,7 +412,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Students", "IT Professionals"],
     duration: "12 hours",
-    difficulty: "Beginner",
+    difficulty: Difficulty.Beginner,
     topics: ["GCP", "Compute Engine", "Storage", "Networking"],
   },
   {
@@ -410,7 +423,7 @@ export const dummyCourses: Course[] = [
     title: "Linux Command Line Basics",
     subtitle: "Master the Linux terminal",
     description: "Learn essential Linux commands and shell scripting for productivity and automation.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Udemy",
     source_url: "https://udemy.com/linux-command-line",
     author: "Jason Cannon",
@@ -419,7 +432,7 @@ export const dummyCourses: Course[] = [
     featured: false,
     audience: ["Students", "IT Professionals"],
     duration: "10 hours",
-    difficulty: "Beginner",
+    difficulty: Difficulty.Beginner,
     topics: ["Bash", "Shell Scripting", "File System"],
   },
   {
@@ -430,7 +443,7 @@ export const dummyCourses: Course[] = [
     title: "TensorFlow Developer Certificate in 2024: Zero to Mastery",
     subtitle: "Become a certified TensorFlow developer",
     description: "Prepare for the TensorFlow Developer Certificate exam with hands-on projects and deep learning fundamentals.",
-    type: "course",
+    type: CourseType.Course,
     source_platform: "Udemy",
     source_url: "https://udemy.com/tensorflow-developer-certificate",
     author: "Daniel Bourke",
@@ -439,7 +452,7 @@ export const dummyCourses: Course[] = [
     featured: true,
     audience: ["Developers", "Students"],
     duration: "30 hours",
-    difficulty: "Intermediate",
+    difficulty: Difficulty.Intermediate,
     topics: ["TensorFlow", "Neural Networks", "Projects"],
   },
 ]; 

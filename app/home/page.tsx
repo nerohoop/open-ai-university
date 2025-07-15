@@ -1,10 +1,20 @@
-import React from "react";
+"use client";
+
+import React, {useState} from "react";
 import {Button} from "@/components/ui/button";
 import {Book} from "lucide-react";
 import {CourseCard} from "@/components/ui/course-card";
-import {dummyCourses} from "@/types/course";
+import {dummyCourses, Course} from "@/types/course";
+import {SidebarFilter} from "@/components/ui/sidebar-filter";
 
 export default function HomePage() {
+  // State to hold filtered courses
+  const [filteredCourses, setFilteredCourses] = useState(dummyCourses);
+
+  // Handler to update filtered courses from SidebarFilter
+  const handleFilterChange = (filteredCourses: Course[]) => {
+    setFilteredCourses(filteredCourses);
+  };
 
   return (
     <main className="min-h-screen bg-white text-black flex flex-col items-center justify-between py-12">
@@ -21,7 +31,7 @@ export default function HomePage() {
         </nav>
       </header>
 
-      {/* Hero Section */}
+      {/* Hero Section (full width) */}
       <section className="relative w-full max-w-6xl flex flex-col items-center text-center gap-6 mb-20 pt-8 pb-16 overflow-hidden px-6">
         {/* Gradient background shape */}
         <div className="absolute inset-0 -z-10 flex justify-center items-center">
@@ -40,15 +50,24 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* Courses Section */}
-      <section className="w-full max-w-6xl mb-20">
-        <h2 className="text-2xl font-bold mb-6 text-center">Featured AI Courses</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {dummyCourses.map((course) => (
-            <CourseCard key={course.id} course={course} />
-          ))}
+      {/* Courses Section with Sidebar */}
+      <div className="w-full max-w-6xl flex flex-col md:flex-row gap-8 mb-20 px-6">
+        {/* Sidebar */}
+        <div className="md:w-1/4 w-full mb-8 md:mb-0">
+          <SidebarFilter onFilterChange={handleFilterChange} />
         </div>
-      </section>
+        {/* Courses Section */}
+        <div className="md:w-3/4 w-full">
+          <section className="w-full mb-20">
+            <h2 className="text-2xl font-bold mb-6 text-center">Featured AI Courses</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+              {filteredCourses.map((course) => (
+                <CourseCard key={course.id} course={course} />
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
 
       {/* Footer */}
       <footer className="w-full text-center text-gray-400 text-sm py-4 border-t border-gray-200">
