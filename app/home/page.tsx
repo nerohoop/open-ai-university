@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState} from "react";
+import React, {useState, useCallback} from "react";
 import {Button} from "@/components/ui/button";
 import {Book} from "lucide-react";
 import {CourseCard} from "@/components/ui/course-card";
@@ -12,9 +12,9 @@ export default function HomePage() {
   const [filteredCourses, setFilteredCourses] = useState(dummyCourses);
 
   // Handler to update filtered courses from SidebarFilter
-  const handleFilterChange = (filteredCourses: Course[]) => {
+  const handleFilterChange = useCallback((filteredCourses: Course[]) => {
     setFilteredCourses(filteredCourses);
-  };
+  }, []);
 
   return (
     <main className="min-h-screen bg-white text-black flex flex-col items-center justify-between py-12">

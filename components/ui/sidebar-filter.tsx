@@ -35,7 +35,8 @@ export function SidebarFilter({ onFilterChange }: SidebarFilterProps) {
       return matchesSearch && matchesLevel && matchesType;
     });
     onFilterChange?.(filtered);
-  }, [search, selectedLevels, selectedTypes, onFilterChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, selectedLevels, selectedTypes]);
 
   // Handlers
   const handleLevelChange = (level: Difficulty) => {

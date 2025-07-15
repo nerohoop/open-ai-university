@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { Course } from "@/types/course";
 import {getDifficultyColor, getTypeColor} from "@/lib/utils";
+import clsx from "clsx";
 
 export function CourseCard({ course }: { course: Course }) {
   return (
@@ -33,13 +34,13 @@ export function CourseCard({ course }: { course: Course }) {
         <div className="flex gap-2 mb-3">
           <Badge
             variant="outline"
-            className={`${getDifficultyColor(course.difficulty)}`}
+            className={clsx(getDifficultyColor(course.difficulty))}
           >
             {course.difficulty}
           </Badge>
           <Badge
             variant="outline"
-            className={`${getTypeColor(course.type)}`}
+            className={clsx(getTypeColor(course.type))}
           >
             {course.type}
           </Badge>
@@ -52,7 +53,7 @@ export function CourseCard({ course }: { course: Course }) {
           <div className="flex items-center justify-between text-gray-500 text-base">
             <Badge
               variant="outline"
-              className={`${getTypeColor(course.source_platform)}`}
+              className={clsx(getTypeColor(course.type))}
             >
               {course.source_platform}
             </Badge>
